@@ -1,0 +1,94 @@
+<!-- detector/templates/detector/pages/index.html -->
+{% extends 'detector/base.html' %}
+
+{% block title %}Home - Phishing Email Detector{% endblock %}
+
+{% block main %}
+    <!-- Hero Section -->
+    <section class="hero-section" data-aos="fade-down" data-aos-duration="1000">
+        <div class="container">
+            <h1>AI-Powered Phishing Email Detector</h1>
+            <p>Protect yourself from phishing attacks with our intelligent email detection system.</p>
+            <a href="#detector" class="btn btn-light btn-lg">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center text-dark mb-5" data-aos="fade-up">Key Features</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4" data-aos="fade-right" data-aos-delay="100">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-shield-alt fa-3x mb-3"></i>
+                            <h5 class="card-title">Advanced Detection</h5>
+                            <p class="card-text">Uses machine learning to accurately detect phishing emails.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-user-friends fa-3x mb-3"></i>
+                            <h5 class="card-title">User-Friendly</h5>
+                            <p class="card-text">Simple and intuitive interface for seamless user experience.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-left" data-aos-delay="300">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-cogs fa-3x mb-3"></i>
+                            <h5 class="card-title">Customizable</h5>
+                            <p class="card-text">Easily extendable to include new features and models.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detector Form Section -->
+    <section id="detector" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4" data-aos="fade-up">Check Your Email</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8" data-aos="fade-up" data-aos-delay="100">
+                    <form id="emailForm">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="emailContent" class="form-label">Paste Email Content Here:</label>
+                            <textarea class="form-control" id="emailContent" name="emailContent" rows="5" placeholder="Enter email content..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Analyze Email</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" style="display: none;" class="text-center mb-3">
+        <i class="fas fa-spinner fa-spin fa-3x"></i>
+    </div>
+
+    <!-- Results Section -->
+    <section id="results" class="py-5 bg-light" style="display: none;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card">
+                        <div class="card-body text-center result">
+                            <!-- Dynamically add classes for phishing or legitimate -->
+                            <i id="resultIcon" class="fas fa-question-circle"></i>
+                            <h5 class="card-title">Analysis Results</h5>
+                            <p id="resultText" class="card-text">Analyzing your email...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
